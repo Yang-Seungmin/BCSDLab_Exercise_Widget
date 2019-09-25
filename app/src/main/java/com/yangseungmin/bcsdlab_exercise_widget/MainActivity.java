@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonIncreaseCount.setOnClickListener(this);
 
         textView = (TextView) findViewById(R.id.textView);
-        textView.setText(count);
+        textView.setText(String.valueOf(count));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(v.getId()) {
             case R.id.button_increase_count:
                 count++;
-                textView.setText(count);
+                textView.setText(String.valueOf(count));
                 break;
         }
     }
