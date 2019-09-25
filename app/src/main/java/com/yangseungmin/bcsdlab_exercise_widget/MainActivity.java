@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button buttonCreateToast;
+    private Button buttonIncreaseCount;
+
+    private TextView textView;
+
+    private static int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +25,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        buttonCreateToast = (Button) findViewById(R.id.button_create_toast);
-        buttonCreateToast.setOnClickListener(this);
+        buttonIncreaseCount = (Button) findViewById(R.id.button_increase_count);
+        buttonIncreaseCount.setOnClickListener(this);
+
+        textView = (TextView) findViewById(R.id.textView);
+        textView.setText(count);
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.button_create_toast:
-                Toast.makeText(this, "Example toast message", Toast.LENGTH_SHORT).show();
+            case R.id.button_increase_count:
+                count++;
+                textView.setText(count);
                 break;
         }
     }
