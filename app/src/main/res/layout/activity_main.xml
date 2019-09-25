@@ -8,17 +8,19 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-        tools:text="15"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+        tools:text="15" />
 
     <!-- Buttons Layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="16dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="horizontal">
@@ -29,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="Toast"
             android:layout_weight="1"
-            android:layout_margin="24dp"/>
+            android:layout_margin="16dp"/>
 
         <Button
             android:id="@+id/button_increase_count"
@@ -37,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Count"
-            android:layout_margin="24dp"/>
+            android:layout_margin="16dp"/>
 
         <Button
             android:id="@+id/button_random_number"
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Random"
-            android:layout_margin="24dp"/>
+            android:layout_margin="16dp"/>
 
     </LinearLayout>
 
