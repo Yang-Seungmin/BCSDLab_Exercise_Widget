@@ -21,16 +21,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         init();
+
+        toastButton.setOnClickListener(this);
+        countButton.setOnClickListener(this);
+
+        textView.setText(String.valueOf(count));
     }
 
     private void init() {
         toastButton = (Button) findViewById(R.id.button_toast);
         countButton = (Button) findViewById(R.id.button_count);
-        toastButton.setOnClickListener(this);
-        countButton.setOnClickListener(this);
 
         textView = (TextView) findViewById(R.id.textView);
-        textView.setText(String.valueOf(count));
     }
 
     @Override
