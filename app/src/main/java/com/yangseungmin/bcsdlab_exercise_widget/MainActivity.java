@@ -2,6 +2,7 @@ package com.yangseungmin.bcsdlab_exercise_widget;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,26 +14,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button toastButton, countButton, randomButton;
     private TextView textView;
-
+    private Context context;
     private static int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        context = this;
         init();
     }
 
     private void init() {
-        toastButton = (Button) findViewById(R.id.button_toast);
-        countButton = (Button) findViewById(R.id.button_count);
-        randomButton = (Button) findViewById(R.id.button_random);
+        toastButton = findViewById(R.id.button_toast);
+        countButton = findViewById(R.id.button_count);
+        randomButton = findViewById(R.id.button_random);
         toastButton.setOnClickListener(this);
         countButton.setOnClickListener(this);
         randomButton.setOnClickListener(this);
 
-        textView = (TextView) findViewById(R.id.textView);
+        textView = findViewById(R.id.textView);
         textView.setText(String.valueOf(count));
     }
 
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textView.setText(String.valueOf(++count));
                 break;
             case R.id.button_random:
-                Intent intent = new Intent(MainActivity.this, RandomActivity.class);
+                Intent intent = new Intent(context, RandomActivity.class);
                 intent.putExtra("random", count);
                 startActivity(intent);
         }
