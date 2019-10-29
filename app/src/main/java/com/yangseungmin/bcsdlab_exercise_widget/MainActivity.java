@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         context = this;
         init();
+
+        textView.setText(String.valueOf(count));
     }
 
     private void init() {
@@ -36,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         randomButton.setOnClickListener(this);
 
         textView = findViewById(R.id.textView);
-        textView.setText(String.valueOf(count));
     }
 
     @Override
@@ -49,14 +50,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 builder.setPositiveButton("Reset count", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        count = 0;
+                        textView.setText(String.valueOf(count));
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
                 builder.setNeutralButton("Toast", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        Toast.makeText(MainActivity.this, "Toast Example", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
