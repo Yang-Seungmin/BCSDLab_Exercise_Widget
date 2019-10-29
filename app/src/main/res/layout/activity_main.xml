@@ -31,10 +31,11 @@
             android:text="Toast"
             android:layout_margin="16dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/button_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="72dp"
+            android:layout_height="48dp"
+            app:srcCompat="@android:drawable/arrow_up_float"
             android:text="Count"
             android:layout_margin="16dp" />
 
