@@ -1,10 +1,12 @@
 package com.yangseungmin.bcsdlab_exercise_widget;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         context = this;
         init();
+
+        textView.setText(String.valueOf(count));
     }
 
     private void init() {
@@ -40,14 +44,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         randomButton.setOnClickListener(this);
 
         textView = findViewById(R.id.textView);
-        textView.setText(String.valueOf(count));
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_toast:
-                Toast.makeText(this, "Toast Example", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Dialog");
+                builder.setMessage("You just activated my trap card.");
+                builder.setPositiveButton("Reset count", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        count = 0;
+                        textView.setText(String.valueOf(count));
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.setNeutralButton("Toast", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MainActivity.this, "Toast Example", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
                 break;
             case R.id.button_count:
                 textView.setText(String.valueOf(++count));
