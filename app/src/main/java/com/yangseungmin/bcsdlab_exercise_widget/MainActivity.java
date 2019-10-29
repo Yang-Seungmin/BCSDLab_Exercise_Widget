@@ -1,6 +1,8 @@
 package com.yangseungmin.bcsdlab_exercise_widget;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +18,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textView;
     private Context context;
     private static int count = 0;
+
+    private boolean isFragmentOpened = false;
+    private RandomFragment randomFragment;
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +53,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textView.setText(String.valueOf(++count));
                 break;
             case R.id.button_random:
-                Intent intent = new Intent(context, RandomActivity.class);
+
+                if(!isFragmentOpened) {
+                    randomFragment = new RandomFragment(count);
+                    fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.add(R.id.fragment_container, randomFragment).commit();
+                    isFragmentOpened = true;
+                }
+
+                /*Intent intent = new Intent(context, RandomActivity.class);
                 intent.putExtra("random", count);
-                startActivity(intent);
+                startActivity(intent);*/
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(isFragmentOpened) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.detach(randomFragment).commit();
+            isFragmentOpened = false;
+        } else super.onBackPressed();
     }
 }

@@ -13,7 +13,6 @@ public class RandomActivity extends AppCompatActivity {
     private TextView textViewDescription, textViewRandomCount;
     private int maxRandomNumber;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +22,7 @@ public class RandomActivity extends AppCompatActivity {
         }
         init();
         textViewDescription.setText("Here is a random number between 0 and " + maxRandomNumber);
-        textViewRandomCount.setText(String.valueOf(getRandomNumber(maxRandomNumber)))
-        ;
+        textViewRandomCount.setText(String.valueOf(getRandomNumber(maxRandomNumber)));
     }
 
     private void init() {
