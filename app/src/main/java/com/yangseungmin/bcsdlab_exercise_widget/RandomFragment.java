@@ -1,5 +1,6 @@
 package com.yangseungmin.bcsdlab_exercise_widget;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +18,8 @@ import java.util.Random;
 public class RandomFragment extends Fragment {
 
     private TextView textViewDescription, textViewRandomCount;
-    private int maxRandomNumber;
+    private int maxRandomNumber, randomNumber;
+    private Intent intent;
 
     public RandomFragment(int count) {
         // Required empty public constructor
@@ -32,9 +34,19 @@ public class RandomFragment extends Fragment {
         init(view);
 
         textViewDescription.setText("Here is a random number between 0 and " + maxRandomNumber);
-        textViewRandomCount.setText(String.valueOf(getRandomNumber(maxRandomNumber)));
+        randomNumber = getRandomNumber(maxRandomNumber);
+        textViewRandomCount.setText(String.valueOf(randomNumber));
+
+        startNotificationService();
 
         return view;
+    }
+
+    private void startNotificationService() {
+        intent = new Intent(getActivity(), NotificationService.class);
+        intent.putExtra("max", maxRandomNumber);
+        intent.putExtra("val", randomNumber);
+        getActivity().startService(intent);
     }
 
     private void init(View view) {
@@ -47,4 +59,9 @@ public class RandomFragment extends Fragment {
         return random.nextInt(max + 1);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        getActivity().stopService(intent);
+    }
 }
